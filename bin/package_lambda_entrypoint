@@ -7,4 +7,4 @@ pushd "${RUNDIR}/.."
 export COMPONENT_NAME=serverless_scheduler_html_checker
 
 # Package
-"${RUNDIR}/../../common/bin/package_lambda_runner.sh"
+"${RUNDIR}/../../../common/bin/package_lambda_runner.sh"
