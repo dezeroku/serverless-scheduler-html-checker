@@ -9,7 +9,7 @@ on:
   pull_request:
 jobs:
   test:
-    uses: dezeroku/monitor-page/.github/workflows/build-and-test-python.yml
+    uses: dezeroku/monitor-page/.github/workflows/build-and-test-python.yml@master
     with:
       python-version: "3.9"
       directory: "serverless-scheduler-html-checker"
