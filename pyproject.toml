@@ -15,6 +15,7 @@ coverage = {extras = ["toml"], version = "^7.2.1"}
 pylint = "^2.16.2"
 # This is added as a dev dependency, because the boto3 will be obtained from the 'common' layer.
 boto3 = "^1.26.82"
+common = { path = "../../common/", develop = true }
 
 [tool.coverage.run]
 omit = ["*tests*"]
