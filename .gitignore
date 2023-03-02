@@ -32,3 +32,8 @@ __pycache__
 .fleet
 .hypothesis
 .packaging
+
+terraform*
+.terraform*
+!terraform.tfvars.json
+*secret-values.tfvars
