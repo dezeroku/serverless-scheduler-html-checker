@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "serverless-scheduler-html-checker"
+version = "0.1.0"
+description = "HTMLMonitorJob consumer for serverless-scheduler project. It consumes the 'html_monitor_job' events and check if the last call's obtained HTML is different than the current one."
+authors = ["dezeroku <dezeroku@gmail.com>"]
+readme = "README.md"
+packages = [{include = "serverless_scheduler_html_checker"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+coverage = {extras = ["toml"], version = "^7.2.1"}
+pylint = "^2.16.2"
+# This is added as a dev dependency, because the boto3 will be obtained from the 'common' layer.
+boto3 = "^1.26.82"
+
+[tool.coverage.run]
+omit = ["*tests*"]
+
+[tool.pylint.MASTER]
+py-version = "3.9"
+extension-pkg-whitelist = "pydantic"
+load-plugins = [
+  "pylint.extensions.code_style",
+  "pylint.extensions.typing",
+]
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = 'missing-module-docstring,missing-class-docstring,missing-function-docstring,too-few-public-methods,fixme'
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+
+[virtualenvs]
+create = true
+in-project = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

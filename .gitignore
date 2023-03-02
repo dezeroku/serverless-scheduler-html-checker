@@ -1,0 +1,33 @@
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Serverless directories
+.serverless
+
+# User defined
+*~
+.mypy_cache
+node_modules
+lambda_venv
+__pycache__
+.sls_packaging_cache
+.coverage
+.deployment-temp
+.idea
+.fleet
+.hypothesis

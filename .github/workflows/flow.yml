@@ -1,0 +1,30 @@
+---
+name: Run tests
+
+on:
+  push:
+
+  workflow_dispatch:
+
+  pull_request:
+jobs:
+  test:
+    uses: dezeroku/monitor-page/.github/workflows/build-and-test-python.yml
+    with:
+      python-version: "3.9"
+      directory: "serverless-scheduler-html-checker"
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    env:
+      tflint_version: v0.44.1
+
+    steps:
+      - uses: terraform-linters/setup-tflint@v3
+        name: Setup TFLint
+        #if: steps.cache-tflint.outputs.cache-hit != 'true'
+        with:
+          tflint_version: ${{ env.tflint_version }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - uses: pre-commit/action@v3.0.0
