@@ -8,6 +8,7 @@ packages = [{include = "serverless_scheduler_html_checker"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+# pydantic comes from common library
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.1"
