@@ -8,11 +8,19 @@ on:
 
   pull_request:
 jobs:
-  test:
+  test-components:
+    strategy:
+      fail-fast: false
+      matrix:
+        cfg:
+          - component: "serverless-scheduler-html-checker"
+            python-version: "3.9"
+          - component: "serverless-scheduler-html-checker-api"
+            python-version: "3.9"
     uses: dezeroku/monitor-page/.github/workflows/build-and-test-python.yml@aws-poc
     with:
-      python-version: "3.9"
-      directory: "."
+      python-version: ${{ matrix.cfg.python-version }}
+      directory: ${{ matrix.cfg.component }}
 
   pre-commit:
     runs-on: ubuntu-latest

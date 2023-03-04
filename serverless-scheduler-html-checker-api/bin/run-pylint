@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-poetry run pylint serverless_scheduler_html_checker tests
+poetry run pylint serverless_scheduler_html_checker_api tests
