@@ -13,14 +13,17 @@ jobs:
       fail-fast: false
       matrix:
         cfg:
-          - component: "serverless-scheduler-html-checker"
+          - component: "dezeroku/serverless-scheduler-html-checker"
             python-version: "3.9"
-          - component: "serverless-scheduler-html-checker-api"
+            directory: "plugins/serverless-scheduler-html-checker"
+          - component: "dezeroku/serverless-scheduler-html-checker"
             python-version: "3.9"
+            directory: "plugins/serverless-scheduler-html-checker/serverless-scheduler-html-checker-api"
     uses: dezeroku/monitor-page/.github/workflows/build-and-test-python.yml@aws-poc
     with:
       python-version: ${{ matrix.cfg.python-version }}
-      directory: ${{ matrix.cfg.component }}
+      plugin-name: ${{ matrix.cfg.plugin-name }}
+      directory: ${{ matrix.cfg.directory }}
 
   pre-commit:
     runs-on: ubuntu-latest
