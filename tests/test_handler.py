@@ -1,3 +1,4 @@
+import pytest
 from common.models.plugins import parse_dict_to_job
 from mypy_boto3_s3 import S3Client
 from mypy_boto3_ses import SESClient
@@ -5,6 +6,7 @@ from mypy_boto3_ses import SESClient
 from serverless_scheduler_html_checker.handler import handler
 
 
+@pytest.fixture(autouse=True)
 def common_setup(
     helpers,
     mock_s3,
@@ -19,22 +21,12 @@ def common_setup(
 
 
 def test_handler_no_records(
-    helpers,
     mock_s3: S3Client,
     mock_ses: SESClient,
     example_bucket_name,
     example_template_name,
     example_source_email,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     handler(
         [],
         mock_s3,
@@ -56,15 +48,6 @@ def test_handler_no_previous_state(
     example_source_email,
     requests_mock,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     job = parse_dict_to_job(helpers.html_monitor_job_dict_factory())
 
     data = "test"
@@ -91,15 +74,6 @@ def test_handler_same_previous_state(
     example_source_email,
     requests_mock,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     job = parse_dict_to_job(helpers.html_monitor_job_dict_factory())
 
     data = "test"
@@ -135,15 +109,6 @@ def test_handler_different_previous_state(
     example_source_email,
     requests_mock,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     job = parse_dict_to_job(helpers.html_monitor_job_dict_factory())
 
     data = "test"

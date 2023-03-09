@@ -2,13 +2,13 @@ import os
 
 import pytest
 from common.models.plugins import parse_dict_to_job
-from mypy_boto3_s3 import S3Client
 from mypy_boto3_ses import SESClient
 
 from serverless_scheduler_html_checker.handler import entrypoint
 from tests.conftest import Helpers
 
 
+@pytest.fixture(autouse=True)
 def common_setup(
     helpers,
     mock_s3,
@@ -34,23 +34,9 @@ def common_setup(
     ],
 )
 def test_entrypoint_no_records(
-    helpers,
-    mock_s3: S3Client,
     mock_ses: SESClient,
-    example_bucket_name,
-    example_template_name,
-    example_source_email,
     event,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     entrypoint(event, None)
 
     assert int(mock_ses.get_send_quota()["SentLast24Hours"]) == 0
@@ -69,23 +55,10 @@ def test_entrypoint_no_records(
 )
 def test_entrypoint_no_previous_state(
     helpers,
-    mock_s3: S3Client,
     mock_ses: SESClient,
-    example_bucket_name,
-    example_template_name,
-    example_source_email,
     requests_mock,
     event,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     job = parse_dict_to_job(helpers.html_monitor_job_dict_factory())
 
     data = "test"
@@ -109,23 +82,10 @@ def test_entrypoint_no_previous_state(
 )
 def test_entrypoint_same_previous_state(
     helpers,
-    mock_s3: S3Client,
     mock_ses: SESClient,
-    example_bucket_name,
-    example_template_name,
-    example_source_email,
     requests_mock,
     event,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     job = parse_dict_to_job(helpers.html_monitor_job_dict_factory())
 
     data = "test"
@@ -151,23 +111,10 @@ def test_entrypoint_same_previous_state(
 )
 def test_entrypoint_different_previous_state(
     helpers,
-    mock_s3: S3Client,
     mock_ses: SESClient,
-    example_bucket_name,
-    example_template_name,
-    example_source_email,
     requests_mock,
     event,
 ):
-    common_setup(
-        helpers,
-        mock_s3,
-        mock_ses,
-        example_bucket_name,
-        example_template_name,
-        example_source_email,
-    )
-
     job = parse_dict_to_job(helpers.html_monitor_job_dict_factory())
 
     data = "test"
