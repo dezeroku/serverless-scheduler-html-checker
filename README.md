@@ -3,12 +3,18 @@
 This repo provides a plugin to [serverless-scheduler](https://github.com/dezeroku/serverless-scheduler) project
 that's meant to consume 'html_monitor_job' events.
 
+# High Level Overview
+
+![High Level Overview](docs/diagrams/created/high_level_overview.png?raw=true "High Level Overview")
+
 The general concept for the plugin is to:
 
-1. Obtain an HTML code for the provided `url`
+1. Obtain the HTML for the provided `url`
 2. Compare it with the previous HTML code (stored in S3) if it exists, otherwise just save it to S3.
-3. If the state differs from the previous HTML code, an email is sent to `user_email` describing the difference.
+3. If the state differs from the previous HTML code, send an email to `user_email` describing the difference.
    Then the new state is written to S3.
+
+# Building
 
 This project is meant to be run and built as a subdirectory in the `serverless-scheduler/plugins`.
 It's currently added there as a submodule.
