@@ -6,5 +6,12 @@ pushd "${RUNDIR}/.."
 
 export COMPONENT_NAME=serverless_scheduler_html_checker
 
+rm -rf ./.packaging
+
+mkdir -p ./.packaging/temp/app/builder/serverless-scheduler-html-checker-api
+
+cp "./serverless-scheduler-html-checker-api/pyproject.toml" .packaging/temp/app/builder/serverless-scheduler-html-checker-api
+cp "./serverless-scheduler-html-checker-api/poetry.lock" .packaging/temp/app/builder/serverless-scheduler-html-checker-api
+
 # Package
-"${RUNDIR}/../../../common/bin/package_lambda_runner.sh"
+SKIP_PACKAGING_REMOVAL="true" "${RUNDIR}/../../../common/bin/package_lambda_runner.sh"
