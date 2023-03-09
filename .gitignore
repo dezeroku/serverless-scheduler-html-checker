@@ -33,7 +33,7 @@ __pycache__
 .hypothesis
 .packaging
 
-terraform*
 .terraform*
+terraform.tfstate*
 !terraform.tfvars.json
 *secret-values.tfvars
