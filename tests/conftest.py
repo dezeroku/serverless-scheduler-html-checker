@@ -10,7 +10,7 @@ _EXAMPLE_USER_EMAIL = "user@example.com"
 _EXAMPLE_USER_ID = "unique-user-id"
 _EXAMPLE_BUCKET_NAME = "test-bucket"
 _EXAMPLE_TEMPLATE_NAME = "test-template"
-_EXAMPLE_URL = "example.com"
+_EXAMPLE_URL = "https://example.com"
 _EXAMPLE_TARGET_ADDRESS = "recipient@example.com"
 _EXAMPLE_SOURCE_EMAIL = "sender@example.com"
 
