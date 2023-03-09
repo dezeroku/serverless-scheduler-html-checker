@@ -2,6 +2,9 @@ import os
 
 import boto3
 import pytest
+
+# pylint: disable=no-name-in-module
+from common.models.plugins import HTMLMonitorJob
 from moto import mock_s3, mock_ses
 from mypy_boto3_s3 import S3Client
 from mypy_boto3_ses import SESClient
@@ -36,6 +39,32 @@ class Helpers:
             "url": url,
             "make_screenshots": make_screenshots,
         }
+
+    @staticmethod
+    def sns_event_factory(
+        records: list[HTMLMonitorJob] = None,
+    ):
+        if records is None:
+            records = []
+
+        event = {
+            "Records": [{"SNS": {"Message": rec.json()}} for rec in records],
+        }
+
+        return event
+
+    @staticmethod
+    def sqs_event_factory(
+        records: list[HTMLMonitorJob] = None,
+    ):
+        if records is None:
+            records = []
+
+        event = {
+            "Records": [{"body": rec.json()} for rec in records],
+        }
+
+        return event
 
     @staticmethod
     def empty_mock_bucket(s3_client: S3Client, bucket_name):

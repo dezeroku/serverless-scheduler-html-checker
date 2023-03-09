@@ -1,5 +1,9 @@
+import json
+import os
 from typing import TYPE_CHECKING
 
+import boto3
+from common.models.plugins import parse_dict_to_job
 from serverless_scheduler_html_checker_api.models.html_monitor_job import HTMLMonitorJob
 
 from serverless_scheduler_html_checker.bucket_state import get_state, write_state
@@ -16,7 +20,32 @@ else:
 
 def entrypoint(event, context):
     # pylint: disable=unused-argument
-    pass
+    s3_client = boto3.client("s3")
+    bucket_name = os.environ["BUCKET_NAME"]
+    ses_client = boto3.client("ses")
+    template_name = os.environ["TEMPLATE_NAME"]
+    source_email = os.environ["SOURCE_EMAIL"]
+
+    # The event can come either from SNS (direct connection)
+    # or SQS (if it's defined as a buffer)
+    # Therefore get the job definitions out of the event
+    # and pass them to the handler in a unified format
+    if records := event.get("Records"):
+        if "SNS" in records[0]:
+            to_use = map(lambda x: x["SNS"]["Message"], records)
+        else:
+            to_use = map(lambda x: x["body"], records)
+
+        to_use_records = map(lambda x: parse_dict_to_job(json.loads(x)), to_use)
+
+        handler(
+            to_use_records,
+            s3_client,
+            bucket_name,
+            ses_client,
+            template_name,
+            source_email,
+        )
 
 
 def handler(
