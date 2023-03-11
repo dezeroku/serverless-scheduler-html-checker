@@ -73,12 +73,15 @@ class Helpers:
         )
 
     @staticmethod
-    def create_ses_template(ses_client: SESClient, template_name) -> str:
+    def create_ses_template(ses_client: SESClient, template_name: str) -> str:
         ses_client.create_template(
             Template={
                 "TemplateName": template_name,
                 "SubjectPart": "Change detected at {{url}}",
-                "TextPart": '<h1>Hello</h1><p>An HTML change has been detected at <a href="{{url}}">{{url}}</a>.</p>',
+                "TextPart": (
+                    "<h1>Hello</h1><p>An HTML change has been "
+                    + 'detected at <a href="{{url}}">{{url}}</a>.</p>'
+                ),
                 "HtmlPart": "Hello ,\r\nAn HTML change has been detected at {{url}}.",
             }
         )

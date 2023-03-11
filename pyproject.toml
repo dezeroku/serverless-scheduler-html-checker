@@ -24,7 +24,7 @@ serverless-scheduler-html-checker-api = { path = "./serverless-scheduler-html-ch
 requests-mock = "^1.10.0"
 
 [tool.coverage.run]
-omit = ["*tests*"]
+omit = ["*tests*", "*common*"]
 
 [tool.pylint.MASTER]
 py-version = "3.9"
