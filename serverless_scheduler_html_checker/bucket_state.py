@@ -18,6 +18,7 @@ def get_state(s3_client: S3Client, bucket_name: str, path: str) -> StateResponse
     If the temp state (HTML of a previous check) exists for an id, return it.
     Otherwise return None
     """
+    logger.debug("Getting state from: %s", path)
     try:
         obj = s3_client.get_object(Bucket=bucket_name, Key=path)
     except botocore.exceptions.ClientError as exc:
@@ -34,4 +35,5 @@ def write_state(s3_client: S3Client, bucket_name: str, path: str, body: str):
     """
     Save the state in the bucket
     """
+    logger.debug("Writing state to: %s", path)
     s3_client.put_object(Bucket=bucket_name, Key=path, Body=body)

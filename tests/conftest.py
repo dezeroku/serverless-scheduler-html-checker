@@ -48,7 +48,7 @@ class Helpers:
             records = []
 
         event = {
-            "Records": [{"SNS": {"Message": rec.json()}} for rec in records],
+            "Records": [{"Sns": {"Message": rec.json()}} for rec in records],
         }
 
         return event
@@ -77,9 +77,9 @@ class Helpers:
         ses_client.create_template(
             Template={
                 "TemplateName": template_name,
-                "SubjectPart": "Test Subject",
-                "TextPart": "Test Text {{url}}",
-                "HtmlPart": "Test HTML {{url}}",
+                "SubjectPart": "Change detected at {{url}}",
+                "TextPart": '<h1>Hello</h1><p>An HTML change has been detected at <a href="{{url}}">{{url}}</a>.</p>',
+                "HtmlPart": "Hello ,\r\nAn HTML change has been detected at {{url}}.",
             }
         )
 

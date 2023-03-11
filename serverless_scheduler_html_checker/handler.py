@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from typing import TYPE_CHECKING
 
@@ -17,6 +18,9 @@ else:
     S3Client = object
     SESClient = object
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 
 def entrypoint(event, context):
     # pylint: disable=unused-argument
@@ -31,8 +35,9 @@ def entrypoint(event, context):
     # Therefore get the job definitions out of the event
     # and pass them to the handler in a unified format
     if records := event.get("Records"):
-        if "SNS" in records[0]:
-            to_use = map(lambda x: x["SNS"]["Message"], records)
+        logger.debug(records)
+        if "Sns" in records[0]:
+            to_use = map(lambda x: x["Sns"]["Message"], records)
         else:
             to_use = map(lambda x: x["body"], records)
 
