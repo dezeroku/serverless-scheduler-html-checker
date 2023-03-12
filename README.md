@@ -23,3 +23,8 @@ The general concept for the plugin is to:
 This project is meant to be run and built as a subdirectory in the `serverless-scheduler/plugins`.
 It's currently added there as a submodule.
 Especially the `bin/package_lambda_entrypoint` strictly relies on the `common` package's build system.
+
+# Notes
+
+1. By default the deployment automatically cleans up temp state older than 30 days.
+   If you wish to run schedules with longer sleep time, modify the cleanup policy accordingly.
