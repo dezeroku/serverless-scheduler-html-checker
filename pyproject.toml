@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "HTMLMonitorJob consumer for serverless-scheduler project. It consumes the 'html_monitor_job' events and check if the last call's obtained HTML is different than the current one."
 authors = ["dezeroku <dezeroku@gmail.com>"]
 readme = "README.md"
-packages = [{include = "serverless_scheduler_html_checker"}]
+packages = [{include = "serverless_scheduler_html_checker/**/*.py"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
