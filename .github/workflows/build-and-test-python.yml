@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: dezeroku/monitor-page
-          ref: aws-poc
+          ref: master
       - uses: actions/checkout@v3
         with:
           path: ${{ inputs.checkout_directory }}
@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: dezeroku/monitor-page
-          ref: aws-poc
+          ref: master
       - uses: actions/checkout@v3
         with:
           path: ${{ inputs.checkout_directory }}
@@ -87,7 +87,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: dezeroku/monitor-page
-          ref: aws-poc
+          ref: master
       - uses: actions/checkout@v3
         with:
           path: ${{ inputs.checkout_directory }}
