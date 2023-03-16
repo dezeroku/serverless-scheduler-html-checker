@@ -24,11 +24,8 @@ def send_email(
         Destination={"ToAddresses": addresses},
         Template=template_name,
         TemplateData=json.dumps(
-            [
-                {
-                    "Name": "url",
-                    "Value": url,
-                }
-            ]
+            {
+                "url": url,
+            }
         ),
     )
