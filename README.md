@@ -28,3 +28,5 @@ Especially the `bin/package_lambda_entrypoint` strictly relies on the `common` p
 
 1. By default the deployment automatically cleans up temp state older than 30 days.
    If you wish to run schedules with longer sleep time, modify the cleanup policy accordingly.
+2. This has been tested and works fine with SES production access. If you don't have it set up, most likely
+   all of the receiving identities would also have to be verified in SES and added in `terraform/iam.tf`
