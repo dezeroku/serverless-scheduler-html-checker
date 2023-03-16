@@ -26,10 +26,10 @@ data "aws_iam_policy_document" "ses_access" {
       "ses:SendTemplatedEmail",
       "ses:SendEmail",
     ]
-    resources = [
+    resources = concat([
       data.aws_ses_domain_identity.mail_identity.arn,
       aws_ses_template.mail_template.arn,
-    ]
+    ], var.email_configuration_set != "" ? ["arn:aws:ses:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:configuration-set/${var.email_configuration_set}"] : [])
   }
 }
 

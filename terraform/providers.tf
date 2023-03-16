@@ -9,13 +9,5 @@ terraform {
   }
 }
 
-# Configure the AWS Provider
-provider "aws" {
-  region = var.aws_region
-  default_tags {
-    tags = {
-      "Service" = var.service,
-      "Stage"   = var.stage,
-    }
-  }
-}
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
