@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: dezeroku/monitor-page
+          repository: dezeroku/serverless-scheduler
           ref: master
       - uses: actions/checkout@v3
         with:
@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: dezeroku/monitor-page
+          repository: dezeroku/serverless-scheduler
           ref: master
       - uses: actions/checkout@v3
         with:
@@ -86,7 +86,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: dezeroku/monitor-page
+          repository: dezeroku/serverless-scheduler
           ref: master
       - uses: actions/checkout@v3
         with:
