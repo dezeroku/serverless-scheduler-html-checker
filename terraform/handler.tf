@@ -3,7 +3,8 @@ module "lambda_handler" {
     aws = aws
   }
 
-  source = "../../../terraform/modules/lambda_function"
+  # Hardcoded to point to a commit on the master branch
+  source = "git::ssh://git@github.com/dezeroku/serverless-scheduler//terraform/src/modules/lambda_function?ref=c839df81bb6d0078a5d6d26b8d0675b141fb800c"
 
   lambda_zip_path = var.lambda_zip_path
   function_name   = "${var.prefix}-html-checker"

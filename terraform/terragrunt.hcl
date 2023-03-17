@@ -2,7 +2,7 @@
 # terraform/deployments/<DEPLOY_ENV>/plugins-serverless-scheduler-html-checker/terragrunt.hcl
 # That's also where you should put proper `secret-values.tfvars`
 terraform {
-  source = "../../../..//plugins/serverless-scheduler-html-checker/terraform"
+  source = "../../../../plugins/serverless-scheduler-html-checker/terraform//."
 
   extra_arguments "common_vars" {
     commands = get_terraform_commands_that_need_vars()
