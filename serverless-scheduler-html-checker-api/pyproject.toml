@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "serverless-scheduler-html-checker-api"
 version = "0.1.0"
-description = "HTMLMonitorJob consumer for serverless-scheduler project. It consumes the 'html_monitor_job' events and check if the last call's obtained HTML is different than the current one."
+description = "HTMLMonitorJob API for serverless-scheduler project"
 authors = ["dezeroku <dezeroku@gmail.com>"]
 readme = "README.md"
 packages = [{include = "serverless_scheduler_html_checker_api/**/*.py"}]
@@ -18,7 +18,7 @@ pylint = "^2.16.2"
 common = { path = "../../../common/", develop = true }
 
 [tool.coverage.run]
-omit = ["*tests*"]
+omit = ["*tests*", "*common*"]
 
 [tool.pylint.MASTER]
 py-version = "3.9"
