@@ -6,3 +6,13 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every weekday
       interval: "daily"
+  - package-ecosystem: "poetry"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+  - package-ecosystem: "terraform"
+    directory: "/terraform/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
