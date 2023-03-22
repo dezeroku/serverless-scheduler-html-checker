@@ -8,7 +8,7 @@ from common.models.plugins import parse_dict_to_job
 from serverless_scheduler_html_checker_api.models.html_monitor_job import HTMLMonitorJob
 
 from serverless_scheduler_html_checker.bucket_state import get_state, write_state
-from serverless_scheduler_html_checker.html import get_html
+from serverless_scheduler_html_checker.html import generate_html_diff, get_html
 from serverless_scheduler_html_checker.ses import send_email
 
 if TYPE_CHECKING:
@@ -66,8 +66,14 @@ def handler(
         path = rec.get_unique_job_id()
         if (old_state := get_state(s3_client, bucket_name, path)) is not None:
             if state != old_state:
+                diff_html = generate_html_diff(old_state, state)
                 send_email(
-                    ses_client, template_name, source_email, [rec.user_email], rec.url
+                    ses_client,
+                    template_name,
+                    source_email,
+                    [rec.user_email],
+                    rec.url,
+                    diff_html,
                 )
 
         write_state(s3_client, bucket_name, path, state)

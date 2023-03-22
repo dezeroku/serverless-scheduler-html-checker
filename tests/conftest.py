@@ -14,6 +14,7 @@ _EXAMPLE_USER_ID = "unique-user-id"
 _EXAMPLE_BUCKET_NAME = "test-bucket"
 _EXAMPLE_TEMPLATE_NAME = "test-template"
 _EXAMPLE_URL = "https://example.com"
+_EXAMPLE_DIFF_HTML = "<h1>I am just a test diff</h1>"
 _EXAMPLE_TARGET_ADDRESS = "recipient@example.com"
 _EXAMPLE_SOURCE_EMAIL = "sender@example.com"
 
@@ -141,6 +142,11 @@ def example_target_addresses_fixture():
 @pytest.fixture(name="example_url")
 def example_url_fixture():
     return _EXAMPLE_URL
+
+
+@pytest.fixture(name="example_diff_html")
+def example_diff_html_fixture():
+    return _EXAMPLE_DIFF_HTML
 
 
 @pytest.fixture(name="mock_s3")

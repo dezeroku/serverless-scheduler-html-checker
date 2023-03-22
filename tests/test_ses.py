@@ -10,6 +10,7 @@ def test_send_email(
     example_source_email,
     example_target_addresses,
     example_url,
+    example_diff_html,
 ):
     helpers.create_ses_template(mock_ses, example_template_name)
     helpers.verify_ses_email(mock_ses, example_source_email)
@@ -20,6 +21,7 @@ def test_send_email(
         example_source_email,
         example_target_addresses,
         example_url,
+        example_diff_html,
     )
 
     assert int(mock_ses.get_send_quota()["SentLast24Hours"]) == 1
