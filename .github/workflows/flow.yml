@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Setup Terragrunt
-        uses: autero1/action-terragrunt@v1.3.1
+        uses: autero1/action-terragrunt@v1.3.2
         with:
           terragrunt_version: 0.42.7
       - uses: terraform-linters/setup-tflint@v3
