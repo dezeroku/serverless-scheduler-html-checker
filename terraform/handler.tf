@@ -4,7 +4,7 @@ module "lambda_handler" {
   }
 
   # Hardcoded to point to a commit on the master branch
-  source = "git::ssh://git@github.com/dezeroku/serverless-scheduler//terraform/src/modules/lambda_function?ref=c839df81bb6d0078a5d6d26b8d0675b141fb800c"
+  source = "git::ssh://git@github.com/dezeroku/serverless-scheduler//terraform/src/modules/lambda_function?ref=6669e1f346db0dc600a1efb01316bf253a88b578"
 
   lambda_zip_path = var.lambda_zip_path
   function_name   = "${var.prefix}-html-checker"
