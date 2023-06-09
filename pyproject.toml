@@ -15,7 +15,7 @@ beautifulsoup4 = "^4.12.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.1"
 coverage = {extras = ["toml"], version = "^7.2.1"}
-pylint = "^2.16.2"
+pylint = "^2.17.4"
 # This is added as a dev dependency, because the boto3 will be obtained from the 'common' layer.
 moto = "^4.1"
 boto3-stubs = {extras = ["s3", "ses"], version = "^1.26.82"}
