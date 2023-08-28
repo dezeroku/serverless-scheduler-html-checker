@@ -18,7 +18,7 @@ coverage = {extras = ["toml"], version = "^7.2.1"}
 pylint = "^2.16.2"
 # This is added as a dev dependency, because the boto3 will be obtained from the 'common' layer.
 moto = "^4.1"
-boto3-stubs = {extras = ["s3", "ses"], version = "^1.26.82"}
+boto3-stubs = {extras = ["s3", "ses"], version = "^1.28.35"}
 boto3 = "^1.26.82"
 common = { path = "../../common/", develop = true }
 serverless-scheduler-html-checker-api = { path = "./serverless-scheduler-html-checker-api", develop = true }
