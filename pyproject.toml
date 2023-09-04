@@ -13,7 +13,7 @@ requests = "^2.28.2"
 beautifulsoup4 = "^4.12.0"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.2.1"
+pytest = "^7.4.1"
 coverage = {extras = ["toml"], version = "^7.2.1"}
 pylint = "^2.16.2"
 # This is added as a dev dependency, because the boto3 will be obtained from the 'common' layer.
